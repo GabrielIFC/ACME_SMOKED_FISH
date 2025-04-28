@@ -1,0 +1,10 @@
+Este programa funciona solo con la instalación de estas extensiones:
+
+- pymongo
+- bcrypt
+
+Vendedor: Gabriel Fuentes
+Contraseña: 1234
+
+Administrador: Ricardo Gutierrez
+Contraseña: admin
