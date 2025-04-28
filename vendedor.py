@@ -8,10 +8,10 @@ stock_col = db["stock"]
 
 def vender_salmón():
     if get_current_user() is None or get_current_user()['rol'] != 'vendedor':
-        print("❌ Solo los vendedores pueden realizar ventas.")
+        print(" Solo los vendedores pueden realizar ventas.")
         return
 
-    print("\n🏷️ Venta de Salmón")
+    print("\n Venta de Salmón")
     print("Tipos de salmón disponibles:")
     print("1. Atlántico - $5000 por kilo")
     print("2. Nórdico - $7000 por kilo")
@@ -31,26 +31,26 @@ def vender_salmón():
         if tipo == 'Salir':
             break
         if tipo not in salmones:
-            print("❌ Tipo de salmón inválido.")
+            print(" Tipo de salmón inválido.")
             continue
         if tipo in tipos_vendidos:
-            print(f"❌ Ya has vendido el tipo de salmón {tipo} en esta venta. Por favor, elige otro tipo.")
+            print(f" Ya has vendido el tipo de salmón {tipo} en esta venta. Por favor, elige otro tipo.")
             continue
 
         try:
             cantidad = float(input(f"Ingrese la cantidad de {tipo} (en kilos): "))
             if cantidad <= 0:
-                print("❌ La cantidad debe ser mayor a cero.")
+                print(" La cantidad debe ser mayor a cero.")
                 continue
         except ValueError:
-            print("❌ Entrada inválida. Ingrese un número.")
+            print(" Entrada inválida. Ingrese un número.")
             continue
 
         # Verificar stock disponible
         stock = stock_col.find_one({"tipo": tipo})
         if not stock or stock["stock_kilos"] < cantidad:
             disponible = stock["stock_kilos"] if stock else 0
-            print(f"❌ No hay suficiente stock de {tipo}. Disponible: {disponible} kg.")
+            print(f" No hay suficiente stock de {tipo}. Disponible: {disponible} kg.")
             continue
 
         # Descontar del stock
@@ -63,7 +63,7 @@ def vender_salmón():
         tipos_vendidos.add(tipo)
 
     if not pedido:
-        print("❌ No se realizó ninguna venta.")
+        print(" No se realizó ninguna venta.")
         return
 
     total = sum([item['cantidad'] * item['precio'] for item in pedido])
@@ -74,9 +74,9 @@ def vender_salmón():
     }
     pedidos_col.insert_one(nuevo_pedido)
 
-    print(f"\n✅ Venta registrada con éxito. Total: ${total}")
+    print(f"\n Venta registrada con éxito. Total: ${total}")
 
     # Mostrar stock actualizado
-    print("\n📦 Stock actualizado:")
+    print("\n Stock actualizado:")
     for doc in stock_col.find():
         print(f"{doc['tipo']}: {doc['stock_kilos']} kg disponibles")

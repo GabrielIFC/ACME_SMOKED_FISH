@@ -9,7 +9,7 @@ from administrador import ver_reportes, modificar_stock
 def menu_principal():
     user = get_current_user()
     if user is None:
-        print("❌ Debes iniciar sesión para acceder al sistema.")
+        print(" Debes iniciar sesión para acceder al sistema.")
         return
 
     print(f"\nBienvenido, {user['nombre']}!")
@@ -29,10 +29,10 @@ def menu_vendedor():
             vender_salmón()
         elif opcion == '2':
             logout()
-            print("👋 Cerrando sesión.")
+            print(" Cerrando sesión.")
             break
         else:
-            print("❌ Opción no válida.")
+            print(" Opción no válida.")
 
 def menu_administrador():
     while True:
@@ -48,10 +48,10 @@ def menu_administrador():
             modificar_stock()
         elif opcion == '3':
             logout()
-            print("👋 Cerrando sesión.")
+            print(" Cerrando sesión.")
             break
         else:
-            print("❌ Opción no válida.")
+            print(" Opción no válida.")
 
 if __name__ == "__main__":
     while True:
@@ -64,7 +64,7 @@ if __name__ == "__main__":
             login()
             menu_principal()
         elif opcion == '2':
-            print("👋 Saliendo del sistema.")
+            print(" Saliendo del sistema.")
             break
         else:
-            print("❌ Opción no válida.")
+            print(" Opción no válida.")

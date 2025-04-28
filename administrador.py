@@ -8,7 +8,7 @@ pedidos_col = db["pedidos"]
 
 def ver_reportes():
     if get_current_user() is None or get_current_user()['rol'] != 'administrador':
-        print("❌ Solo los administradores pueden ver los reportes.")
+        print(" Solo los administradores pueden ver los reportes.")
         return
 
     # Obtener los pedidos y calcular las ganancias
@@ -25,19 +25,19 @@ def ver_reportes():
             total_general += cantidad * precio
 
     # Mostrar ganancias por tipo de salmón
-    print("\n📊 Reporte de Ganancias:")
+    print("\n Reporte de Ganancias:")
     for tipo, ganancia in ganancias.items():
         print(f"{tipo}: ${ganancia:.2f}")
 
-    print(f"\n🔹 Total General de Ganancias: ${total_general:.2f}")
+    print(f"\n Total General de Ganancias: ${total_general:.2f}")
 
 
 def modificar_stock():
     if get_current_user() is None or get_current_user()['rol'] != 'administrador':
-        print("❌ Solo los administradores pueden modificar el stock.")
+        print(" Solo los administradores pueden modificar el stock.")
         return
 
-    print("\n📦 Modificar Stock de Salmón")
+    print("\n Modificar Stock de Salmón")
     print("Tipos de salmón disponibles:")
     print("1. Atlántico")
     print("2. Nórdico")
