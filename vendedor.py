@@ -7,9 +7,9 @@ pedidos_col = db["pedidos"]
 stock_col = db["stock"]
 
 def vender_salmón():
-    if get_current_user() is None or get_current_user()['rol'] != 'vendedor':
-        print(" Solo los vendedores pueden realizar ventas.")
-        return
+    if get_current_user() is None or get_current_user()['rol'] not in ['vendedor', 'administrador']:
+     print(" Solo los vendedores o administradores pueden realizar ventas.")
+     return
 
     print("\n Venta de Salmón")
     print("Tipos de salmón disponibles:")
@@ -23,15 +23,18 @@ def vender_salmón():
         "Pacífico": 3000
     }
 
+    opciones = {"1": "Atlántico", "2": "Nórdico", "3": "Pacífico"}
+
     pedido = []
     tipos_vendidos = set()
 
     while len(pedido) < 3:
-        tipo = input("\nSeleccione el tipo de salmón (Atlántico, Nórdico, Pacífico o 'salir' para terminar): ").capitalize()
-        if tipo == 'Salir':
+        opcion = input("\nSeleccione el tipo de salmón:\n1. Atlántico\n2. Nórdico\n3. Pacífico\nIngrese número (o 'salir' para terminar): ")
+        if opcion.lower() == 'salir':
             break
-        if tipo not in salmones:
-            print(" Tipo de salmón inválido.")
+        tipo = opciones.get(opcion)
+        if not tipo:
+            print(" Opción inválida.")
             continue
         if tipo in tipos_vendidos:
             print(f" Ya has vendido el tipo de salmón {tipo} en esta venta. Por favor, elige otro tipo.")

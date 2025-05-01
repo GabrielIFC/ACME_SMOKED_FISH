@@ -39,7 +39,8 @@ def menu_administrador():
         print("\nMenú Administrador")
         print("1. Ver reportes de ganancias")
         print("2. Modificar stock de salmón")
-        print("3. Cerrar sesión")
+        print("3. Vender salmón")
+        print("4. Cerrar sesión")
         opcion = input("Seleccione una opción: ")
 
         if opcion == '1':
@@ -47,6 +48,8 @@ def menu_administrador():
         elif opcion == '2':
             modificar_stock()
         elif opcion == '3':
+            vender_salmón()
+        elif opcion == '4':
             logout()
             print(" Cerrando sesión.")
             break
